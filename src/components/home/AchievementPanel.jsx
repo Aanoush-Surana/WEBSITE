@@ -10,15 +10,12 @@ function AchievementCard({ item }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
-      className="glass-card p-6 h-full relative overflow-hidden group hover:border-white/20 transition-all duration-300"
+      className="glass-card p-6 h-full relative overflow-hidden group hover:border-brand-500/20 transition-all duration-300"
     >
       {/* Gradient background */}
       <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl ${item.color} opacity-10 rounded-full blur-2xl group-hover:opacity-15 transition-opacity`} />
 
-      {/* Icon */}
-      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br ${item.color} text-2xl mb-4 shadow-lg`}>
-        {item.icon}
-      </div>
+
 
       {/* Category badge */}
       <div className="flex items-center gap-2 mb-3">
@@ -27,12 +24,12 @@ function AchievementCard({ item }) {
       </div>
 
       {/* Title */}
-      <h3 className="font-display font-bold text-white text-base mb-2 leading-tight">
+      <h3 className="font-display font-bold text-dark-100 text-base mb-2 leading-tight">
         {item.title}
       </h3>
 
       {/* Person */}
-      <div className="text-brand-400 text-sm font-medium mb-2">
+      <div className="text-brand-700 text-sm font-medium mb-2">
         {item.student || item.faculty || item.detail}
       </div>
 
@@ -46,7 +43,15 @@ function AchievementCard({ item }) {
 
 function Carousel({ data, label, color }) {
   const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const timerRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const next = useCallback(() => {
     setCurrent((c) => (c + 1) % data.length);
@@ -70,8 +75,9 @@ function Carousel({ data, label, color }) {
   const handlePrev = () => { prev(); resetTimer(); };
 
   const visibleItems = () => {
+    const count = isMobile ? 1 : 2;
     const items = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < count; i++) {
       items.push(data[(current + i) % data.length]);
     }
     return items;
@@ -84,20 +90,20 @@ function Carousel({ data, label, color }) {
         <div className="flex items-center gap-3">
           <div className={`w-1 h-8 rounded-full bg-gradient-to-b ${color}`} />
           <div>
-            <h3 className="font-display font-bold text-white text-lg">{label}</h3>
+            <h3 className="font-display font-bold text-dark-100 text-lg">{label}</h3>
             <p className="text-dark-400 text-xs">{data.length} achievements</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={handlePrev}
-            className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-dark-400 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+            className="w-8 h-8 rounded-lg border border-dark-700 flex items-center justify-center text-dark-400 hover:text-brand-700 hover:border-brand-500/30 hover:bg-brand-50/50 transition-all"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             onClick={handleNext}
-            className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-dark-400 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+            className="w-8 h-8 rounded-lg border border-dark-700 flex items-center justify-center text-dark-400 hover:text-brand-700 hover:border-brand-500/30 hover:bg-brand-50/50 transition-all"
           >
             <ChevronRight size={16} />
           </button>
@@ -122,7 +128,7 @@ function Carousel({ data, label, color }) {
             className={`rounded-full transition-all duration-200 ${
               i === current
                 ? 'w-5 h-1.5 bg-brand-500'
-                : 'w-1.5 h-1.5 bg-dark-600 hover:bg-dark-400'
+                : 'w-1.5 h-1.5 bg-dark-700 hover:bg-dark-600'
             }`}
           />
         ))}
@@ -132,8 +138,10 @@ function Carousel({ data, label, color }) {
 }
 
 export default function AchievementPanel() {
+  const [activeTab, setActiveTab] = useState('student');
+
   return (
-    <section className="py-20 bg-dark-950 relative overflow-hidden">
+    <section className="py-8 bg-dark-950 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-brand-900/10 rounded-full blur-3xl" />
@@ -142,7 +150,7 @@ export default function AchievementPanel() {
 
       <div className="relative max-w-7xl mx-auto px-4 lg:px-6">
         {/* Section header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-8">
           <span className="section-tag mb-4">
             🏆 Excellence & Recognition
           </span>
@@ -152,23 +160,51 @@ export default function AchievementPanel() {
           </p>
         </div>
 
+        {/* Mobile Carousel Tabs */}
+        <div className="flex lg:hidden bg-dark-800 p-1.5 rounded-2xl border border-dark-700/80 mb-6 shadow-sm gap-1">
+          {[
+            { id: 'student', label: 'Students', color: 'bg-yellow-500' },
+            { id: 'faculty', label: 'Faculty', color: 'bg-blue-500' },
+            { id: 'placement', label: 'T&P Cell', color: 'bg-green-500' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-semibold transition-all duration-200 select-none ${
+                activeTab === tab.id
+                  ? 'bg-brand-700 text-white shadow-glow'
+                  : 'text-dark-400 hover:text-dark-200 hover:bg-dark-700/40'
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full ${tab.color}`} />
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         {/* Three carousels */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <Carousel
-            data={studentAchievements}
-            label="Student Achievements"
-            color="from-yellow-500 to-orange-500"
-          />
-          <Carousel
-            data={facultyAchievements}
-            label="Faculty Achievements"
-            color="from-blue-500 to-indigo-600"
-          />
-          <Carousel
-            data={placementAchievements}
-            label="T&P Cell Achievements"
-            color="from-green-500 to-teal-600"
-          />
+          <div className={`${activeTab === 'student' ? 'block' : 'hidden'} lg:block`}>
+            <Carousel
+              data={studentAchievements}
+              label="Student Achievements"
+              color="from-yellow-500 to-orange-500"
+            />
+          </div>
+          <div className={`${activeTab === 'faculty' ? 'block' : 'hidden'} lg:block`}>
+            <Carousel
+              data={facultyAchievements}
+              label="Faculty Achievements"
+              color="from-blue-500 to-indigo-600"
+            />
+          </div>
+          <div className={`${activeTab === 'placement' ? 'block' : 'hidden'} lg:block`}>
+            <Carousel
+              data={placementAchievements}
+              label="T&P Cell Achievements"
+              color="from-green-500 to-teal-600"
+            />
+          </div>
         </div>
       </div>
     </section>

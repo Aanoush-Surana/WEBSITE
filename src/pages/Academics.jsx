@@ -120,7 +120,7 @@ function ProgramPage({ programId }) {
   const [activeSem, setActiveSem] = useState(0);
   const program = programs.find(p => p.id === programId);
 
-  if (!program) return <div className="p-16 text-center text-white">Program not found</div>;
+  if (!program) return <div className="p-16 text-center text-dark-300">Program not found</div>;
 
   const Icon = program.icon;
 
@@ -137,7 +137,7 @@ function ProgramPage({ programId }) {
           <div className="lg:col-span-2 space-y-7">
             {/* Overview */}
             <div className="glass-card p-7">
-              <h2 className="font-display font-bold text-white text-2xl mb-4">Program Overview</h2>
+              <h2 className="font-display font-bold text-dark-100 text-2xl mb-4">Program Overview</h2>
               <p className="text-dark-300 leading-relaxed mb-5">{program.description}</p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
@@ -147,8 +147,8 @@ function ProgramPage({ programId }) {
                   { label: 'Degree', value: program.shortTitle + ' (IIIT Pune)' },
                 ].map(({ label, value }) => (
                   <div key={label} className="bg-dark-800/50 rounded-xl p-3">
-                    <div className="text-dark-400 text-xs mb-1">{label}</div>
-                    <div className="text-white font-semibold text-sm">{value}</div>
+                    <div className="text-dark-500 text-xs mb-1">{label}</div>
+                    <div className="text-dark-100 font-semibold text-sm">{value}</div>
                   </div>
                 ))}
               </div>
@@ -157,7 +157,7 @@ function ProgramPage({ programId }) {
             {/* Curriculum (if semesters exist) */}
             {program.semesters.length > 0 && (
               <div className="glass-card p-7">
-                <h2 className="font-display font-bold text-white text-xl mb-5">Curriculum</h2>
+                <h2 className="font-display font-bold text-dark-100 text-xl mb-5">Curriculum</h2>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {program.semesters.map((sem, idx) => (
                     <button
@@ -166,7 +166,7 @@ function ProgramPage({ programId }) {
                       className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                         activeSem === idx
                           ? 'bg-brand-700 text-white shadow-glow'
-                          : 'bg-dark-800 text-dark-300 hover:text-white hover:bg-dark-700'
+                          : 'bg-dark-800 text-dark-300 hover:text-brand-700 hover:bg-brand-50'
                       }`}
                     >
                       Sem {sem.sem}
@@ -175,11 +175,11 @@ function ProgramPage({ programId }) {
                 </div>
                 <div className="space-y-2">
                   {program.semesters[activeSem]?.subjects.map((subj, i) => (
-                    <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/3 transition-colors">
-                      <div className="w-6 h-6 rounded-lg bg-brand-900/50 border border-brand-800/40 flex items-center justify-center text-brand-400 text-xs font-bold flex-shrink-0">
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-50/50 transition-colors">
+                      <div className="w-6 h-6 rounded-lg bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-700 text-xs font-bold flex-shrink-0">
                         {i + 1}
                       </div>
-                      <span className="text-white/80 text-sm">{subj}</span>
+                      <span className="text-dark-200 text-sm">{subj}</span>
                     </div>
                   ))}
                 </div>
@@ -189,7 +189,7 @@ function ProgramPage({ programId }) {
 
           <div className="space-y-5">
             <div className="glass-card p-6">
-              <h3 className="font-display font-bold text-white text-lg mb-4">Highlights</h3>
+              <h3 className="font-display font-bold text-dark-100 text-lg mb-4">Highlights</h3>
               <ul className="space-y-2.5">
                 {program.highlights.map((h, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-dark-300">
@@ -201,16 +201,16 @@ function ProgramPage({ programId }) {
             </div>
 
             <div className="glass-card p-6">
-              <h3 className="font-display font-bold text-white text-lg mb-4">Quick Links</h3>
+              <h3 className="font-display font-bold text-dark-100 text-lg mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <a href="#" className="flex items-center gap-2 text-sm text-dark-400 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-all">
-                  <Download size={14} className="text-brand-400" /> Curriculum PDF
+                <a href="#" className="flex items-center gap-2 text-sm text-dark-400 hover:text-brand-700 p-2 rounded-lg hover:bg-brand-50 transition-all">
+                  <Download size={14} className="text-brand-700" /> Curriculum PDF
                 </a>
-                <Link to="/academics/fee-structure" className="flex items-center gap-2 text-sm text-dark-400 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-all">
-                  <Receipt size={14} className="text-brand-400" /> Fee Structure
+                <Link to="/academics/fee-structure" className="flex items-center gap-2 text-sm text-dark-400 hover:text-brand-700 p-2 rounded-lg hover:bg-brand-50 transition-all">
+                  <Receipt size={14} className="text-brand-700" /> Fee Structure
                 </Link>
-                <Link to="/academics/academic-calendar" className="flex items-center gap-2 text-sm text-dark-400 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-all">
-                  <Calendar size={14} className="text-brand-400" /> Academic Calendar
+                <Link to="/academics/academic-calendar" className="flex items-center gap-2 text-sm text-dark-400 hover:text-brand-700 p-2 rounded-lg hover:bg-brand-50 transition-all">
+                  <Calendar size={14} className="text-brand-700" /> Academic Calendar
                 </Link>
               </div>
             </div>
@@ -237,17 +237,17 @@ function AcademicsOverview() {
               <Link
                 key={prog.id}
                 to={`/academics/${prog.id}`}
-                className={`feature-card bg-gradient-to-br ${prog.color} bg-opacity-10 border border-white/10 hover:border-white/30`}
+                className="feature-card border border-dark-700 hover:border-brand-500/20 shadow-sm hover:shadow-md transition-all group bg-white"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${prog.color} flex items-center justify-center`}>
                     <Icon size={20} className="text-white" />
                   </div>
-                  <div className="text-xs text-dark-400">{prog.duration}</div>
+                  <div className="text-xs text-dark-500">{prog.duration}</div>
                 </div>
-                <h3 className="font-display font-bold text-white text-base mb-1.5 leading-snug">{prog.title}</h3>
-                <p className="text-dark-400 text-sm mb-3">Intake: {prog.intake} | {prog.admission}</p>
-                <div className="flex items-center gap-1 text-sm text-brand-400 group-hover:gap-2 transition-all">
+                <h3 className="font-display font-bold text-dark-100 text-base mb-1.5 leading-snug group-hover:text-brand-700 transition-colors">{prog.title}</h3>
+                <p className="text-dark-500 text-sm mb-3">Intake: {prog.intake} | {prog.admission}</p>
+                <div className="flex items-center gap-1 text-sm text-brand-700 group-hover:gap-2 transition-all">
                   <span>View Program</span> <ChevronRight size={13} />
                 </div>
               </Link>
@@ -268,8 +268,8 @@ function FeeStructure() {
       />
       <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16">
         <div className="glass-card overflow-hidden">
-          <div className="p-6 border-b border-white/10">
-            <h2 className="font-display font-bold text-white text-xl">Program-wise Fee Structure</h2>
+          <div className="p-6 border-b border-dark-700">
+            <h2 className="font-display font-bold text-dark-100 text-xl">Program-wise Fee Structure</h2>
             <p className="text-dark-400 text-sm mt-1">Annual fees for AY 2025-26 (all amounts in ₹)</p>
           </div>
           <div className="overflow-x-auto">
@@ -282,25 +282,25 @@ function FeeStructure() {
                   <th className="text-right p-4 text-dark-300 text-sm font-semibold">Total/Year</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-dark-700">
                 {[
                   { prog: 'B.Tech (CSE / ECE)', tuition: '1,00,000', hostel: '60,000', total: '1,60,000' },
                   { prog: 'B.Tech Honors', tuition: '1,20,000', hostel: '60,000', total: '1,80,000' },
                   { prog: 'M.Tech (CSE / ECE)', tuition: '1,50,000', hostel: '60,000', total: '2,10,000' },
                   { prog: 'Ph.D.', tuition: '30,000', hostel: '60,000', total: '90,000' },
                 ].map((row) => (
-                  <tr key={row.prog} className="hover:bg-white/3 transition-colors">
-                    <td className="p-4 text-white font-medium text-sm">{row.prog}</td>
-                    <td className="p-4 text-dark-300 text-sm text-right">₹{row.tuition}</td>
-                    <td className="p-4 text-dark-300 text-sm text-right">₹{row.hostel}</td>
-                    <td className="p-4 text-brand-400 font-bold text-sm text-right">₹{row.total}</td>
+                  <tr key={row.prog} className="hover:bg-brand-50/50 transition-colors">
+                    <td className="p-4 text-dark-100 font-medium text-sm">{row.prog}</td>
+                    <td className="p-4 text-dark-400 text-sm text-right">₹{row.tuition}</td>
+                    <td className="p-4 text-dark-400 text-sm text-right">₹{row.hostel}</td>
+                    <td className="p-4 text-brand-700 font-bold text-sm text-right">₹{row.total}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="p-6 bg-dark-800/20 border-t border-white/5">
-            <p className="text-dark-400 text-xs">* Fees subject to revision. Scholarships and fee waivers available for eligible students. GATE scholars (M.Tech) receive stipend of ₹12,400/month.</p>
+          <div className="p-6 bg-dark-800/20 border-t border-dark-700">
+            <p className="text-dark-500 text-xs">* Fees subject to revision. Scholarships and fee waivers available for eligible students. GATE scholars (M.Tech) receive stipend of ₹12,400/month.</p>
           </div>
         </div>
       </div>
@@ -319,8 +319,8 @@ function AcademicCalendar() {
         <div className="grid sm:grid-cols-2 gap-6 mb-8">
           {['Odd Semester 2025-26', 'Even Semester 2025-26'].map((sem) => (
             <div key={sem} className="glass-card p-6">
-              <Calendar size={24} className="text-brand-400 mb-4" />
-              <h3 className="font-display font-bold text-white text-xl mb-4">{sem}</h3>
+              <Calendar size={24} className="text-brand-700 mb-4" />
+              <h3 className="font-display font-bold text-dark-100 text-xl mb-4">{sem}</h3>
               <div className="space-y-3">
                 {[
                   { event: 'Registration', dates: sem.includes('Odd') ? '28 Jul - 2 Aug 2025' : '2 Jan - 7 Jan 2026' },
@@ -330,8 +330,8 @@ function AcademicCalendar() {
                   { event: 'Results', dates: sem.includes('Odd') ? '15 Dec 2025' : '15 Jun 2026' },
                 ].map(({ event, dates }) => (
                   <div key={event} className="flex justify-between text-sm">
-                    <span className="text-dark-400">{event}</span>
-                    <span className="text-white font-medium">{dates}</span>
+                    <span className="text-dark-500">{event}</span>
+                    <span className="text-dark-100 font-medium">{dates}</span>
                   </div>
                 ))}
               </div>

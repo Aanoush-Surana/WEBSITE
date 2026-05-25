@@ -26,16 +26,16 @@ function FacultyCard({ faculty }) {
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass-card p-5 cursor-pointer group hover:border-white/25 hover:shadow-card-hover transition-all duration-300"
+      className="glass-card p-5 cursor-pointer group hover:border-brand-500/20 hover:shadow-card-hover transition-all duration-300 bg-white"
       onClick={() => navigate(`/people/faculty/${faculty.id}`)}
     >
       <div className="flex items-start gap-4 mb-4">
         <Avatar name={faculty.name} />
         <div className="flex-1 min-w-0">
-          <h3 className="font-display font-bold text-white text-base group-hover:text-brand-300 transition-colors leading-tight mb-0.5">
+          <h3 className="font-display font-bold text-dark-100 text-base group-hover:text-brand-700 transition-colors leading-tight mb-0.5">
             {faculty.name}
           </h3>
-          <p className="text-brand-400 text-xs font-medium">{faculty.designation}</p>
+          <p className="text-brand-700 text-xs font-medium">{faculty.designation}</p>
           <p className="text-dark-400 text-xs mt-0.5">{faculty.departmentFull}</p>
         </div>
         {faculty.type === 'visiting' && (
@@ -46,7 +46,7 @@ function FacultyCard({ faculty }) {
       {/* Expertise tags */}
       <div className="flex flex-wrap gap-1.5 mb-4">
         {faculty.expertise.slice(0, 3).map((exp) => (
-          <span key={exp} className="px-2.5 py-1 bg-dark-800/60 border border-white/8 rounded-lg text-xs text-dark-300 hover:border-brand-700/40 hover:text-brand-400 transition-colors">
+          <span key={exp} className="px-2.5 py-1 bg-dark-800/60 border border-dark-700 rounded-lg text-xs text-dark-300 hover:border-brand-700/40 hover:text-brand-700 transition-colors">
             {exp}
           </span>
         ))}
@@ -63,7 +63,7 @@ function FacultyCard({ faculty }) {
             </>
           )}
         </div>
-        <div className="flex items-center gap-1 text-xs text-dark-500 group-hover:text-brand-400 transition-colors">
+        <div className="flex items-center gap-1 text-xs text-dark-500 group-hover:text-brand-700 transition-colors">
           View Profile <ChevronRight size={12} />
         </div>
       </div>
@@ -201,8 +201,8 @@ function FacultyProfile() {
             <div className="flex-1">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <h1 className="font-display font-black text-3xl text-white mb-1">{faculty.name}</h1>
-                  <p className="text-brand-400 font-semibold text-lg">{faculty.designation}</p>
+                  <h1 className="font-display font-black text-3xl text-dark-100 mb-1">{faculty.name}</h1>
+                  <p className="text-brand-700 font-semibold text-lg">{faculty.designation}</p>
                   <p className="text-dark-300 mt-0.5">{faculty.departmentFull} · IIIT Pune</p>
                 </div>
                 <div className="flex gap-3">
@@ -220,7 +220,7 @@ function FacultyProfile() {
               {/* Expertise */}
               <div className="flex flex-wrap gap-2 mt-4">
                 {faculty.expertise.map(exp => (
-                  <span key={exp} className="px-3 py-1 bg-brand-950/60 border border-brand-800/50 text-brand-400 text-xs font-medium rounded-full">
+                  <span key={exp} className="px-3 py-1 bg-brand-50 border border-brand-100 text-brand-700 text-xs font-medium rounded-full">
                     {exp}
                   </span>
                 ))}
@@ -235,7 +235,7 @@ function FacultyProfile() {
                   { label: 'Joined', value: faculty.joinYear },
                 ].map(({ label, value }) => (
                   <div key={label}>
-                    <span className="text-white font-bold text-lg">{value}</span>
+                    <span className="text-dark-100 font-bold text-lg">{value}</span>
                     <span className="text-dark-400 text-xs ml-1.5">{label}</span>
                   </div>
                 ))}
@@ -246,7 +246,7 @@ function FacultyProfile() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-dark-950 border-b border-white/10 sticky top-16 z-20">
+      <div className="bg-dark-950 border-b border-dark-700 sticky top-16 z-20">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="flex overflow-x-auto">
             {tabs.map(({ id, label, icon: Icon }) => (
@@ -255,8 +255,8 @@ function FacultyProfile() {
                 onClick={() => setActiveTab(id)}
                 className={`flex items-center gap-2 px-5 py-4 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
                   activeTab === id
-                    ? 'border-brand-500 text-white'
-                    : 'border-transparent text-dark-400 hover:text-white hover:border-dark-500'
+                    ? 'border-brand-700 text-brand-700 font-semibold'
+                    : 'border-transparent text-dark-400 hover:text-brand-700 hover:border-dark-500'
                 }`}
               >
                 <Icon size={15} />
@@ -273,17 +273,17 @@ function FacultyProfile() {
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
               <div className="glass-card p-7">
-                <h2 className="font-display font-bold text-white text-xl mb-4">Biography</h2>
+                <h2 className="font-display font-bold text-dark-100 text-xl mb-4">Biography</h2>
                 <p className="text-dark-300 leading-relaxed">{faculty.bio}</p>
               </div>
               <div className="glass-card p-7">
-                <h2 className="font-display font-bold text-white text-xl mb-4">Education</h2>
+                <h2 className="font-display font-bold text-dark-100 text-xl mb-4">Education</h2>
                 <div className="space-y-4">
                   {faculty.education.map((edu, i) => (
                     <div key={i} className="flex items-start gap-4">
                       <div className="w-2 h-2 rounded-full bg-brand-500 mt-2 flex-shrink-0" />
                       <div>
-                        <div className="text-white font-semibold">{edu.degree} — {edu.field}</div>
+                        <div className="text-dark-100 font-semibold">{edu.degree} — {edu.field}</div>
                         <div className="text-dark-400 text-sm">{edu.institute}, {edu.year}</div>
                       </div>
                     </div>
@@ -292,13 +292,13 @@ function FacultyProfile() {
               </div>
               {faculty.awards.length > 0 && (
                 <div className="glass-card p-7">
-                  <h2 className="font-display font-bold text-white text-xl mb-4 flex items-center gap-2">
-                    <Award size={18} className="text-yellow-400" /> Awards & Honors
+                  <h2 className="font-display font-bold text-dark-100 text-xl mb-4 flex items-center gap-2">
+                    <Award size={18} className="text-yellow-500" /> Awards & Honors
                   </h2>
                   <ul className="space-y-2.5">
                     {faculty.awards.map((a, i) => (
                       <li key={i} className="flex items-start gap-3 text-dark-300 text-sm">
-                        <span className="text-yellow-400 mt-0.5">🏆</span> {a}
+                        <span className="text-yellow-500 mt-0.5">🏆</span> {a}
                       </li>
                     ))}
                   </ul>
@@ -307,22 +307,22 @@ function FacultyProfile() {
             </div>
             <div className="space-y-5">
               <div className="glass-card p-5">
-                <h3 className="font-display font-bold text-white mb-3">Courses Taught</h3>
+                <h3 className="font-display font-bold text-dark-100 mb-3">Courses Taught</h3>
                 <ul className="space-y-2">
                   {faculty.subjects.map((s, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-dark-300">
-                      <BookOpen size={13} className="text-brand-500 flex-shrink-0" /> {s}
+                      <BookOpen size={13} className="text-brand-700 flex-shrink-0" /> {s}
                     </li>
                   ))}
                 </ul>
               </div>
               {faculty.projects.length > 0 && (
                 <div className="glass-card p-5">
-                  <h3 className="font-display font-bold text-white mb-3">Funded Projects</h3>
+                  <h3 className="font-display font-bold text-dark-100 mb-3">Funded Projects</h3>
                   <ul className="space-y-2">
                     {faculty.projects.map((p, i) => (
                       <li key={i} className="text-sm text-dark-300 flex items-start gap-2">
-                        <span className="text-green-400 mt-0.5 flex-shrink-0">💰</span> {p}
+                        <span className="text-green-600 mt-0.5 flex-shrink-0">💰</span> {p}
                       </li>
                     ))}
                   </ul>
@@ -335,10 +335,10 @@ function FacultyProfile() {
         {activeTab === 'research' && (
           <div className="space-y-6">
             <div className="glass-card p-7">
-              <h2 className="font-display font-bold text-white text-xl mb-5">Research Interests</h2>
+              <h2 className="font-display font-bold text-dark-100 text-xl mb-5">Research Interests</h2>
               <div className="flex flex-wrap gap-3">
                 {faculty.research.map(r => (
-                  <div key={r} className="px-4 py-2.5 bg-dark-800/60 border border-brand-800/40 rounded-xl text-sm font-medium text-brand-300">
+                  <div key={r} className="px-4 py-2.5 bg-brand-50 border border-brand-100 rounded-xl text-sm font-medium text-brand-700">
                     {r}
                   </div>
                 ))}
@@ -346,11 +346,11 @@ function FacultyProfile() {
             </div>
             {faculty.projects.length > 0 && (
               <div className="glass-card p-7">
-                <h2 className="font-display font-bold text-white text-xl mb-5">Research Projects</h2>
+                <h2 className="font-display font-bold text-dark-100 text-xl mb-5">Research Projects</h2>
                 <div className="space-y-3">
                   {faculty.projects.map((p, i) => (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-dark-800/30">
-                      <div className="text-green-400">💰</div>
+                      <div className="text-green-600">💰</div>
                       <span className="text-dark-300 text-sm">{p}</span>
                     </div>
                   ))}
@@ -368,12 +368,12 @@ function FacultyProfile() {
                 <p className="text-dark-400">Publications list will be added soon.</p>
               </div>
             ) : faculty.publications.map((pub, i) => (
-              <div key={i} className="glass-card p-5 hover:border-white/20 transition-all group">
+              <div key={i} className="glass-card p-5 hover:border-brand-500/20 transition-all group bg-white">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="font-semibold text-white text-base mb-1.5 group-hover:text-brand-300 transition-colors">{pub.title}</h3>
+                    <h3 className="font-semibold text-dark-100 text-base mb-1.5 group-hover:text-brand-700 transition-colors">{pub.title}</h3>
                     <div className="flex items-center gap-3 text-sm">
-                      <span className="text-brand-400 font-medium">{pub.journal}</span>
+                      <span className="text-brand-700 font-medium">{pub.journal}</span>
                       <span className="text-dark-500">·</span>
                       <span className="text-dark-400">{pub.year}</span>
                     </div>
@@ -388,31 +388,31 @@ function FacultyProfile() {
         {activeTab === 'contact' && (
           <div className="max-w-lg">
             <div className="glass-card p-7 space-y-4">
-              <h2 className="font-display font-bold text-white text-xl mb-5">Contact Information</h2>
+              <h2 className="font-display font-bold text-dark-100 text-xl mb-5">Contact Information</h2>
               {faculty.email && (
-                <a href={`mailto:${faculty.email}`} className="flex items-center gap-4 p-4 bg-dark-800/50 rounded-xl hover:bg-dark-700/60 transition-colors">
-                  <Mail size={18} className="text-brand-400" />
+                <a href={`mailto:${faculty.email}`} className="flex items-center gap-4 p-4 bg-dark-800/50 rounded-xl hover:bg-brand-50 transition-colors">
+                  <Mail size={18} className="text-brand-700" />
                   <div>
                     <div className="text-dark-400 text-xs mb-0.5">Email</div>
-                    <div className="text-white font-medium">{faculty.email}</div>
+                    <div className="text-dark-100 font-medium">{faculty.email}</div>
                   </div>
                 </a>
               )}
               {faculty.phone && (
                 <div className="flex items-center gap-4 p-4 bg-dark-800/50 rounded-xl">
-                  <Phone size={18} className="text-brand-400" />
+                  <Phone size={18} className="text-brand-700" />
                   <div>
                     <div className="text-dark-400 text-xs mb-0.5">Phone</div>
-                    <div className="text-white font-medium">{faculty.phone}</div>
+                    <div className="text-dark-100 font-medium">{faculty.phone}</div>
                   </div>
                 </div>
               )}
               <div className="flex items-center gap-4 p-4 bg-dark-800/50 rounded-xl">
-                <Code size={18} className="text-brand-400" />
+                <Code size={18} className="text-brand-700" />
                 <div>
                   <div className="text-dark-400 text-xs mb-0.5">Department</div>
-                  <div className="text-white font-medium">{faculty.departmentFull}</div>
-                  <div className="text-dark-400 text-xs">IIIT Pune, Survey No. 149/1, Pune 411057</div>
+                  <div className="text-dark-100 font-medium">{faculty.departmentFull}</div>
+                  <div className="text-dark-400 text-xs">IIIT Pune, Nanoli Tarf Chakan, Pune 410507</div>
                 </div>
               </div>
             </div>
@@ -455,10 +455,10 @@ export default function People() {
               { title: 'Alumni', href: '/people/alumni', icon: Users, desc: 'IIIT Pune graduates worldwide' },
               { title: 'Student Council', href: '/people/student-council', icon: Users, desc: 'Student representatives' },
             ].map(({ title, href, icon: Icon, desc }) => (
-              <Link key={title} to={href} className="feature-card text-center">
-                <Icon size={28} className="text-brand-400 mx-auto mb-3" />
-                <h3 className="font-display font-bold text-white text-lg mb-1">{title}</h3>
-                <p className="text-dark-400 text-sm">{desc}</p>
+              <Link key={title} to={href} className="feature-card border border-dark-700 hover:border-brand-500/20 shadow-sm hover:shadow-md text-center bg-white group">
+                <Icon size={28} className="text-brand-700 mx-auto mb-3" />
+                <h3 className="font-display font-bold text-dark-100 text-lg mb-1 group-hover:text-brand-700 transition-colors">{title}</h3>
+                <p className="text-dark-500 text-sm">{desc}</p>
               </Link>
             ))}
           </div>

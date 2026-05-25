@@ -3,6 +3,7 @@ import {
   Mail, Phone, MapPin,
   ExternalLink, ArrowRight, GraduationCap, ChevronRight
 } from 'lucide-react';
+import Logo from '../shared/Logo';
 
 const FacebookIcon = ({ size = 24, className }) => (
   <svg
@@ -79,29 +80,20 @@ const footerLinks = {
   'Quick Links': [
     { label: 'About IIIT Pune', href: '/about/overview' },
     { label: 'Faculty Directory', href: '/people/faculty' },
+    { label: 'Placements Directory', href: '/placements' },
     { label: 'Academic Calendar', href: '/academics/academic-calendar' },
     { label: 'Fee Structure', href: '/academics/fee-structure' },
-    { label: 'Placements', href: '/placements' },
-    { label: 'Research Centers', href: '/research/centers' },
     { label: 'Campus Gallery', href: '/campus-life/gallery' },
     { label: 'Notice Board', href: '/notices' },
   ],
-  'Programs': [
-    { label: 'B.Tech CSE', href: '/academics/btech-cse' },
-    { label: 'B.Tech ECE', href: '/academics/btech-ece' },
-    { label: 'B.Tech Honors', href: '/academics/btech-honors' },
-    { label: 'M.Tech CSE', href: '/academics/mtech-cse' },
-    { label: 'M.Tech ECE', href: '/academics/mtech-ece' },
+  'Institute & Academics': [
+    { label: 'B.Tech Program', href: '/academics/btech-cse' },
+    { label: 'M.Tech Program', href: '/academics/mtech-cse' },
     { label: 'Ph.D. Program', href: '/academics/phd' },
-  ],
-  'Institute': [
-    { label: 'NIRF Ranking', href: '/about/nirf' },
-    { label: 'ARIIA Ranking', href: '/about/ariia-ranking' },
     { label: 'Board of Governors', href: '/administration/committees/board-of-governors' },
-    { label: 'RTI', href: '/about/rti' },
-    { label: 'Anti-Ragging', href: '/notices/administrative' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Contact Us', href: '/contact' },
+    { label: 'NIRF & RTI', href: '/about/rti' },
+    { label: 'Careers @ IIITP', href: '/careers' },
+    { label: 'Contact Details', href: '/contact' },
   ],
 };
 
@@ -109,18 +101,16 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark-950 border-t border-white/10 mt-auto">
+    <footer className="bg-dark-900 border-t border-dark-700 mt-auto">
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-700 to-brand-900 flex items-center justify-center shadow-glow">
-                <GraduationCap size={22} className="text-white" />
-              </div>
+              <Logo className="w-12 h-12" />
               <div>
-                <div className="font-display font-bold text-white text-lg">IIIT Pune</div>
+                <div className="font-display font-bold text-dark-100 text-lg">IIIT Pune</div>
                 <div className="text-dark-400 text-xs">Institute of National Importance</div>
               </div>
             </Link>
@@ -135,18 +125,18 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin size={15} className="text-brand-500 mt-0.5 flex-shrink-0" />
                 <span className="text-dark-400 text-sm">
-                  Survey No. 149/1, ITI Road, Pune, Maharashtra — 411057
+                  Nanoli Tarf Chakan, Talegaon Dabhade, Maval, Pune, Maharashtra - 410507
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={15} className="text-brand-500 flex-shrink-0" />
-                <a href="tel:+912029042000" className="text-dark-400 text-sm hover:text-white transition-colors">
+                <a href="tel:+912029042000" className="text-dark-400 text-sm hover:text-brand-700 transition-colors">
                   +91-20-2904-2000
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={15} className="text-brand-500 flex-shrink-0" />
-                <a href="mailto:registrar@iiitp.ac.in" className="text-dark-400 text-sm hover:text-white transition-colors">
+                <a href="mailto:registrar@iiitp.ac.in" className="text-dark-400 text-sm hover:text-brand-700 transition-colors">
                   registrar@iiitp.ac.in
                 </a>
               </div>
@@ -158,7 +148,6 @@ export default function Footer() {
                 { icon: FacebookIcon, href: 'https://facebook.com/iiitpune', label: 'Facebook' },
                 { icon: TwitterIcon, href: 'https://twitter.com/IIIT_Pune', label: 'Twitter' },
                 { icon: LinkedinIcon, href: 'https://linkedin.com/company/cdcrciiitp', label: 'LinkedIn' },
-                { icon: YoutubeIcon, href: '#', label: 'YouTube' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -166,7 +155,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg bg-dark-900 border border-white/10 flex items-center justify-center text-dark-400 hover:text-white hover:border-brand-700/50 hover:bg-brand-950/50 transition-all"
+                  className="w-9 h-9 rounded-lg bg-dark-800 border border-dark-700 flex items-center justify-center text-dark-400 hover:text-brand-700 hover:border-brand-500/30 hover:bg-brand-50 transition-all"
                 >
                   <Icon size={15} />
                 </a>
@@ -176,14 +165,14 @@ export default function Footer() {
 
           {/* Links columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="font-display font-semibold text-white mb-4 text-sm">{title}</h3>
+            <div key={title} className="lg:col-span-1">
+              <h3 className="font-display font-semibold text-dark-100 mb-4 text-sm">{title}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-dark-400 text-sm hover:text-white flex items-center gap-1.5 group transition-colors"
+                      className="text-dark-400 text-sm hover:text-brand-700 flex items-center gap-1.5 group transition-colors"
                     >
                       <ChevronRight size={12} className="text-brand-700 group-hover:text-brand-500 transition-colors flex-shrink-0" />
                       {link.label}
@@ -193,11 +182,32 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Locate Us column (Google Maps Map Pin & address) */}
+          <div className="lg:col-span-1">
+            <h3 className="font-display font-semibold text-dark-100 mb-4 text-sm">Locate Us</h3>
+            <div className="rounded-xl overflow-hidden border border-dark-700 bg-dark-800 h-28 w-full mb-3 shadow-sm">
+              <iframe
+                title="IIIT Pune Permanent Campus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3778.337199464871!2d73.6971403!3d18.7650781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b405ac494d45%3A0xc302bc70566bb0f8!2sIndian%20Institute%20of%20Information%20Technology%20Pune!5e0!3m2!1sen!2sin!4v1716630456123!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <p className="text-dark-400 text-[11px] leading-normal">
+              <strong>IIIT Pune Campus:</strong><br />
+              Nanoli Tarf Chakan, Talegaon Dabhade, Maval, Pune - 410507
+            </p>
+          </div>
         </div>
       </div>
 
       {/* External portals strip */}
-      <div className="border-t border-white/5">
+      <div className="border-t border-dark-700">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span className="text-dark-500 text-xs font-semibold uppercase tracking-wider">External Portals:</span>
@@ -213,7 +223,7 @@ export default function Footer() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-dark-400 hover:text-white flex items-center gap-1 transition-colors"
+                className="text-xs text-dark-400 hover:text-brand-700 flex items-center gap-1 transition-colors"
               >
                 {p.label} <ExternalLink size={10} />
               </a>
@@ -223,16 +233,16 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/5 bg-dark-950/80">
+      <div className="border-t border-dark-700 bg-dark-800">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-dark-500 text-xs text-center sm:text-left">
             © {year} Indian Institute of Information Technology, Pune. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link to="/about/rti" className="text-dark-500 text-xs hover:text-white transition-colors">RTI</Link>
-            <Link to="/about/nirf" className="text-dark-500 text-xs hover:text-white transition-colors">NIRF</Link>
+            <Link to="/about/rti" className="text-dark-500 text-xs hover:text-brand-700 transition-colors">RTI</Link>
+            <Link to="/about/nirf" className="text-dark-500 text-xs hover:text-brand-700 transition-colors">NIRF</Link>
             <a href="https://www.iiitp.ac.in" target="_blank" rel="noopener noreferrer"
-              className="text-dark-500 text-xs hover:text-white transition-colors flex items-center gap-1">
+              className="text-dark-500 text-xs hover:text-brand-700 transition-colors flex items-center gap-1">
               iiitp.ac.in <ExternalLink size={9} />
             </a>
           </div>

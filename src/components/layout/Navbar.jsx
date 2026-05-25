@@ -5,6 +5,7 @@ import { Menu, X, Search, ChevronDown, Bell, Phone } from 'lucide-react';
 import { navItems } from '../../data/navigation';
 import MegaMenu from './MegaMenu';
 import MobileDrawer from './MobileDrawer';
+import Logo from '../shared/Logo';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +40,7 @@ export default function Navbar() {
   return (
     <>
       {/* Top utility bar */}
-      <div className="bg-dark-950 border-b border-white/5 hidden lg:block">
+      <div className="bg-dark-800 border-b border-dark-700 hidden lg:block">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-2">
           <div className="flex items-center gap-6">
             <span className="text-dark-400 text-xs flex items-center gap-1">
@@ -52,17 +53,17 @@ export default function Navbar() {
           </div>
           <div className="flex items-center gap-4">
             <a href="https://placements.iiitp.ac.in" target="_blank" rel="noopener noreferrer"
-              className="text-xs text-brand-400 hover:text-brand-300 font-medium transition-colors">
+              className="text-xs text-brand-700 hover:text-brand-600 font-semibold transition-colors">
               Placements Portal ↗
             </a>
             <a href="https://sites.google.com/iiitp.ac.in/library" target="_blank" rel="noopener noreferrer"
-              className="text-xs text-dark-400 hover:text-white transition-colors">
+              className="text-xs text-dark-400 hover:text-brand-700 transition-colors">
               Library
             </a>
-            <a href="#" className="text-xs text-dark-400 hover:text-white transition-colors">
+            <a href="#" className="text-xs text-dark-400 hover:text-brand-700 transition-colors">
               IRINS
             </a>
-            <a href="#" className="text-xs text-dark-400 hover:text-white transition-colors">
+            <a href="#" className="text-xs text-dark-400 hover:text-brand-700 transition-colors">
               RTI
             </a>
           </div>
@@ -73,20 +74,22 @@ export default function Navbar() {
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-dark-950/95 backdrop-blur-lg shadow-card border-b border-white/10'
-            : 'bg-dark-950/90 backdrop-blur-md border-b border-white/5'
+            ? 'bg-dark-900 border-b border-dark-700 shadow-sm'
+            : 'bg-dark-900/90 border-b border-dark-700/50'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-700 to-brand-900 flex items-center justify-center shadow-glow group-hover:shadow-none transition-shadow">
-                <span className="text-white font-black text-sm">IIITPune</span>
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-display font-bold text-white text-sm leading-tight">IIIT Pune</div>
-                <div className="text-dark-400 text-[10px] leading-tight">Indian Institute of Information Technology</div>
+            <Link to="/" className="flex items-center gap-2 group flex-shrink-0">
+              <Logo className="w-9 h-9 group-hover:scale-105 transition-transform duration-200" />
+              <div className="hidden sm:block leading-none">
+                <div className="font-display font-bold text-dark-100 text-base tracking-tight">
+                  IIIT Pune
+                </div>
+                <div className="hidden xl:block text-dark-500 text-[9px] font-medium tracking-wide mt-0.5">
+                  Indian Institute of Information Technology
+                </div>
               </div>
             </Link>
 
@@ -106,8 +109,8 @@ export default function Navbar() {
                     to={item.href}
                     className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                       location.pathname.startsWith(item.href)
-                        ? 'text-white bg-white/8'
-                        : 'text-dark-300 hover:text-white hover:bg-white/5'
+                        ? 'text-brand-700 bg-brand-50/70 font-semibold'
+                        : 'text-dark-300 hover:text-brand-700 hover:bg-brand-50/30'
                     }`}
                   >
                     {item.label}
@@ -125,6 +128,7 @@ export default function Navbar() {
                         menu={item.megaMenu}
                         onMouseEnter={() => handleMenuEnter(item.label)}
                         onMouseLeave={handleMenuLeave}
+                        alignRight={item.label === 'Campus Life' || item.label === 'Notices'}
                       />
                     )}
                   </AnimatePresence>
@@ -134,7 +138,7 @@ export default function Navbar() {
               {/* Placements link */}
               <Link
                 to="/placements"
-                className="ml-1 px-3 py-2 rounded-lg text-sm font-semibold text-brand-400 hover:text-brand-300 hover:bg-brand-950/50 transition-all duration-150"
+                className="ml-1 px-3 py-2 rounded-lg text-sm font-semibold text-brand-700 hover:text-brand-600 hover:bg-brand-50 transition-all duration-150"
               >
                 Placements
               </Link>
@@ -146,7 +150,7 @@ export default function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
-                  className="p-2 rounded-lg text-dark-400 hover:text-white hover:bg-white/5 transition-all"
+                  className="p-2 rounded-lg text-dark-400 hover:text-brand-700 hover:bg-brand-50/50 transition-all"
                 >
                   <Search size={17} />
                 </button>
@@ -174,26 +178,18 @@ export default function Navbar() {
               {/* Notices bell */}
               <Link
                 to="/notices"
-                className="relative p-2 rounded-lg text-dark-400 hover:text-white hover:bg-white/5 transition-all"
+                className="relative p-2 rounded-lg text-dark-400 hover:text-brand-700 hover:bg-brand-50/50 transition-all"
               >
                 <Bell size={17} />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-500 rounded-full animate-pulse-slow" />
               </Link>
 
-              {/* Apply Now CTA */}
-              <a
-                href="https://josaa.ntaonline.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:flex btn-primary text-xs px-4 py-2"
-              >
-                Apply Now
-              </a>
+
 
               {/* Mobile menu toggle */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 rounded-lg text-dark-300 hover:text-white hover:bg-white/5 transition-all"
+                className="lg:hidden p-2 rounded-lg text-dark-300 hover:text-brand-700 hover:bg-brand-50/50 transition-all"
               >
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}
               </button>

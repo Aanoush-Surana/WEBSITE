@@ -13,22 +13,30 @@ function LeaderProfile({ title, name, designation, dept, photo, message, educati
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
             <div className="glass-card p-6 sticky top-24 text-center">
-              <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-brand-700 to-navy-700 flex items-center justify-center mx-auto mb-5 shadow-glow">
-                <UserCircle size={56} className="text-white/70" />
+              <div className="w-32 h-32 rounded-2xl overflow-hidden bg-gradient-to-br from-brand-700 to-navy-700 flex items-center justify-center mx-auto mb-5 shadow-glow">
+                {photo ? (
+                  <img src={photo} alt={name} className="w-full h-full object-cover object-top" />
+                ) : (
+                  <UserCircle size={56} className="text-white/70" />
+                )}
               </div>
-              <h2 className="font-display font-bold text-white text-xl mb-1">{name}</h2>
-              <p className="text-brand-400 text-sm font-medium mb-1">{designation}</p>
+              <h2 className="font-display font-bold text-dark-100 text-xl mb-1">{name}</h2>
+              <p className="text-brand-700 text-sm font-medium mb-1">{designation}</p>
               {dept && <p className="text-dark-400 text-xs mb-4">{dept}</p>}
               <div className="divider mb-4" />
-              {education && (
-                <div className="space-y-2 text-left">
-                  {education.map((e, i) => (
-                    <div key={i} className="text-xs">
-                      <span className="text-white font-medium">{e.degree}</span>
-                      <span className="text-dark-400"> — {e.institution}</span>
-                    </div>
-                  ))}
-                </div>
+              {education && education.length > 0 && (
+                <>
+                  <div className="space-y-2 text-left mb-4">
+                    <h4 className="text-xs font-bold text-dark-400 uppercase tracking-wider mb-2">Education</h4>
+                    {education.map((e, i) => (
+                      <div key={i} className="text-xs">
+                        <span className="text-dark-100 font-medium">{e.degree}</span>
+                        <span className="text-dark-400"> — {e.institution}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="divider mb-4" />
+                </>
               )}
               <div className="mt-4 flex flex-col gap-2">
                 <a href={`mailto:director@iiitp.ac.in`} className="btn-ghost w-full justify-center text-xs">
@@ -38,8 +46,8 @@ function LeaderProfile({ title, name, designation, dept, photo, message, educati
             </div>
           </div>
           <div className="lg:col-span-2">
-            <div className="glass-card p-8">
-              <h3 className="font-display font-bold text-white text-2xl mb-5">About</h3>
+            <div className="glass-card p-8 bg-white">
+              <h3 className="font-display font-bold text-dark-100 text-2xl mb-5">About</h3>
               <div className="text-dark-300 leading-relaxed space-y-4">
                 {message.map((para, i) => <p key={i}>{para}</p>)}
               </div>
@@ -60,22 +68,22 @@ function CommitteePage({ title, desc, members, breadcrumbs }) {
         breadcrumbs={[{ label: 'Administration', href: '/administration' }, { label: 'Committees', href: '/administration' }, ...breadcrumbs]}
       />
       <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16">
-        <div className="glass-card overflow-hidden">
-          <div className="p-6 border-b border-white/10">
-            <h2 className="font-display font-bold text-white text-xl flex items-center gap-3">
-              <Users size={20} className="text-brand-400" />
+        <div className="glass-card overflow-hidden bg-white">
+          <div className="p-6 border-b border-dark-700">
+            <h2 className="font-display font-bold text-dark-100 text-xl flex items-center gap-3">
+              <Users size={20} className="text-brand-700" />
               Committee Members
             </h2>
           </div>
-          <div className="divide-y divide-white/5">
+          <div className="divide-y divide-dark-700">
             {members.map((m, i) => (
-              <div key={i} className="flex items-start gap-5 p-5 hover:bg-white/3 transition-colors">
+              <div key={i} className="flex items-start gap-5 p-5 hover:bg-brand-50/50 transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-800 to-navy-900 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                   {m.name.charAt(0)}
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-white">{m.name}</div>
-                  <div className="text-brand-400 text-sm">{m.role}</div>
+                  <div className="font-semibold text-dark-100">{m.name}</div>
+                  <div className="text-brand-700 text-sm">{m.role}</div>
                   {m.org && <div className="text-dark-400 text-xs mt-0.5">{m.org}</div>}
                 </div>
                 {m.category && (
@@ -92,7 +100,7 @@ function CommitteePage({ title, desc, members, breadcrumbs }) {
 
 const bogMembers = [
   { name: 'Shri Rajesh Kumar', role: 'Chairperson', org: 'Government Nominee, MoE', category: 'Chairman' },
-  { name: 'Prof. Abhijit Sawant', role: 'Director, IIIT Pune', org: 'IIIT Pune', category: 'Ex-Officio' },
+  { name: 'Prof. (Dr.) Vineet Kansal', role: 'Director, IIIT Pune', org: 'IIIT Pune', category: 'Ex-Officio' },
   { name: 'Shri Narayan Patil', role: 'Govt. of Maharashtra Nominee', org: 'DTTE, Maharashtra', category: 'Govt. Nominee' },
   { name: 'Dr. Pramod Sharma', role: 'Industry Nominee', org: 'TCS Research', category: 'Industry' },
   { name: 'Ms. Kavitha Menon', role: 'Industry Nominee', org: 'Infosys Foundation', category: 'Industry' },
@@ -102,7 +110,7 @@ const bogMembers = [
 ];
 
 const senateMembers = [
-  { name: 'Prof. Abhijit Sawant', role: 'Chairman', org: 'Director, IIIT Pune', category: 'Ex-Officio' },
+  { name: 'Prof. (Dr.) Vineet Kansal', role: 'Chairman', org: 'Director, IIIT Pune', category: 'Ex-Officio' },
   { name: 'Dr. Pradip Bose', role: 'Head, CSE Dept.', org: 'IIIT Pune', category: 'HoD' },
   { name: 'Dr. Rajesh Kumar', role: 'Head, ECE Dept.', org: 'IIIT Pune', category: 'HoD' },
   { name: 'Dr. Anjali Patil', role: 'Head, AS&H Dept.', org: 'IIIT Pune', category: 'HoD' },
@@ -129,14 +137,14 @@ export default function Administration() {
                 { title: 'Director', href: '/administration/director', icon: UserCircle, desc: 'Institute Director' },
                 { title: 'Registrar', href: '/administration/registrar', icon: ClipboardList, desc: 'Administrative Head' },
               ].map(({ title, href, icon: Icon, desc }) => (
-                <Link key={title} to={href} className="feature-card text-center">
-                  <Icon size={32} className="text-brand-400 mx-auto mb-3" />
-                  <h3 className="font-display font-bold text-white text-lg mb-1">{title}</h3>
+                <Link key={title} to={href} className="feature-card border border-dark-700 hover:border-brand-500/20 shadow-sm hover:shadow-md text-center bg-white group">
+                  <Icon size={32} className="text-brand-700 mx-auto mb-3" />
+                  <h3 className="font-display font-bold text-dark-100 text-lg mb-1 group-hover:text-brand-700 transition-colors">{title}</h3>
                   <p className="text-dark-400 text-sm">{desc}</p>
                 </Link>
               ))}
             </div>
-            <h2 className="font-display font-bold text-white text-2xl mb-5">Committees</h2>
+            <h2 className="font-display font-bold text-dark-100 text-2xl mb-5">Committees</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
                 { label: 'Board of Governors', href: '/administration/committees/board-of-governors' },
@@ -147,10 +155,10 @@ export default function Administration() {
                 { label: 'Board of Studies — ECE', href: '/administration/committees/bos-ece' },
                 { label: 'Board of Studies — AS&H', href: '/administration/committees/bos-ash' },
               ].map(({ label, href }) => (
-                <Link key={label} to={href} className="glass-card-hover flex items-center gap-3 p-4 group">
-                  <Users size={16} className="text-brand-400 flex-shrink-0" />
-                  <span className="text-white font-medium group-hover:text-brand-300 transition-colors">{label}</span>
-                  <ChevronRight size={14} className="text-dark-600 group-hover:text-brand-400 ml-auto transition-colors" />
+                <Link key={label} to={href} className="glass-card-hover flex items-center gap-3 p-4 group bg-white border border-dark-700">
+                  <Users size={16} className="text-brand-700 flex-shrink-0" />
+                  <span className="text-dark-100 font-medium group-hover:text-brand-700 transition-colors">{label}</span>
+                  <ChevronRight size={14} className="text-dark-600 group-hover:text-brand-700 ml-auto transition-colors" />
                 </Link>
               ))}
             </div>
@@ -180,14 +188,11 @@ export default function Administration() {
       <Route path="director" element={
         <LeaderProfile
           title="Director"
-          name="Prof. Abhijit A.M. Sawant"
+          name="Prof. (Dr.) Vineet Kansal"
           designation="Director"
           dept="IIIT Pune"
-          education={[
-            { degree: 'Ph.D.', institution: 'IIT Bombay' },
-            { degree: 'M.Tech', institution: 'IIT Bombay' },
-            { degree: 'B.E.', institution: 'Walchand College of Engineering' },
-          ]}
+          photo="/director.jpg"
+          education={[]}
           message={[
             "Welcome to IIIT Pune — an institution built on the foundations of excellence, innovation, and service to the nation.",
             "Our vision is clear: to build the next generation of technology leaders who can think critically, solve complex problems, and make a positive impact on society.",
@@ -241,7 +246,7 @@ export default function Administration() {
           desc="Responsible for financial oversight, budget approval, and audit of IIIT Pune."
           members={[
             { name: 'Shri Rajesh Kumar', role: 'Chairman', org: 'MoE Nominee', category: 'Chairman' },
-            { name: 'Prof. Abhijit Sawant', role: 'Director', org: 'IIIT Pune', category: 'Member' },
+            { name: 'Prof. (Dr.) Vineet Kansal', role: 'Director', org: 'IIIT Pune', category: 'Member' },
             { name: 'Dr. Anita Sharma', role: 'Registrar', org: 'IIIT Pune', category: 'Member Secretary' },
             { name: 'Shri Vinod Patil', role: 'Finance Officer', org: 'IIIT Pune', category: 'Member' },
           ]}
@@ -262,7 +267,7 @@ export default function Administration() {
               title={titles[slug]}
               desc={`${titles[slug]} members and meeting schedules.`}
               members={[
-                { name: 'Prof. Abhijit Sawant', role: 'Chairman', org: 'Director, IIIT Pune', category: 'Ex-Officio' },
+                { name: 'Prof. (Dr.) Vineet Kansal', role: 'Chairman', org: 'Director, IIIT Pune', category: 'Ex-Officio' },
                 { name: 'Department Head', role: 'Convener', org: 'IIIT Pune', category: 'Convener' },
                 { name: 'Senior Faculty Member 1', role: 'Member', org: 'IIIT Pune', category: 'Faculty' },
                 { name: 'Senior Faculty Member 2', role: 'Member', org: 'IIIT Pune', category: 'Faculty' },

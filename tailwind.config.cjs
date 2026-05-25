@@ -40,30 +40,30 @@ module.exports = {
           950: '#1e1a54',
         },
         dark: {
-          50: '#f8f9ff',
-          100: '#eef0f8',
-          200: '#d5d8ed',
-          300: '#b0b5d7',
-          400: '#858bb8',
-          500: '#63689d',
-          600: '#4d5283',
-          700: '#3d406b',
-          800: '#2a2d52',  
-          900: '#1a1c35',
-          950: '#0d0e1f',
+          50: '#020617', // slate-950
+          100: '#0f172a', // slate-900
+          200: '#1e293b', // slate-800
+          300: '#334155', // slate-700
+          400: '#475569', // slate-600
+          500: '#64748b', // slate-500
+          600: '#cbd5e1', // slate-300
+          700: '#e2e8f0', // slate-200
+          800: '#f1f5f9', // slate-100
+          900: '#ffffff', // white
+          950: '#f0f4ff', // light blue
         }
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #0d0e1f 0%, #1a1c35 40%, #2a1030 70%, #3d0a1a 100%)',
-        'card-gradient': 'linear-gradient(135deg, rgba(30,26,84,0.8) 0%, rgba(61,10,26,0.8) 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 60%, #e0e9ff 100%)',
+        'card-gradient': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
         'accent-gradient': 'linear-gradient(135deg, #ab1f44 0%, #4338cb 100%)',
-        'gold-gradient': 'linear-gradient(135deg, #d4a017 0%, #f5c842 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #b45309 0%, #d97706 100%)',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(204,45,85,0.3)',
-        'glow-blue': '0 0 20px rgba(67,56,203,0.3)',
-        'card': '0 4px 20px rgba(0,0,0,0.3)',
-        'card-hover': '0 8px 40px rgba(0,0,0,0.5)',
+        'glow': '0 0 20px rgba(204,45,85,0.15)',
+        'glow-blue': '0 0 20px rgba(67,56,203,0.15)',
+        'card': '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03)',
+        'card-hover': '0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

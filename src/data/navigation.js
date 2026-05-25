@@ -151,33 +151,27 @@ export const navItems = [
     megaMenu: {
       sections: [
         {
-          title: 'Clubs',
+          title: 'Clubs & Societies',
           items: [
-            { label: 'Blueprint', href: '/campus-life/clubs/blueprint', icon: 'PenTool', desc: 'Design & innovation club' },
-            { label: 'Bit Legion', href: '/campus-life/clubs/bit-legion', icon: 'Code2', desc: 'Coding & competitive programming' },
-            { label: 'E-Cell', href: '/campus-life/clubs/e-cell', icon: 'Lightbulb', desc: 'Entrepreneurship cell' },
-            { label: 'Eclectic', href: '/campus-life/clubs/eclectic', icon: 'Music2', desc: 'Cultural & arts club' },
-            { label: 'Rang', href: '/campus-life/clubs/rang', icon: 'Palette', desc: 'Fine arts club' },
-            { label: 'Saaz', href: '/campus-life/clubs/saaz', icon: 'Guitar', desc: 'Music club' },
-            { label: 'Sports Club', href: '/campus-life/clubs/sports', icon: 'Trophy', desc: 'Sports & fitness' },
-            { label: 'Q-riocity', href: '/campus-life/clubs/q-riocity', icon: 'HelpCircle', desc: 'Quiz & trivia club' },
+            { label: 'Technical Clubs', href: '/campus-life/clubs', icon: 'Code2', desc: 'Bit Legion, Localhost, ROFIES' },
+            { label: 'Cultural Clubs', href: '/campus-life/clubs', icon: 'Music2', desc: 'Eclectic, Rang, Saaz, etc.' },
           ]
         },
         {
           title: 'Activities',
           items: [
-            { label: 'Fit India', href: '/campus-life/activities', icon: 'Heart', desc: 'Fitness campaign' },
-            { label: 'Yoga Day', href: '/campus-life/activities', icon: 'Sun', desc: 'International yoga day' },
-            { label: 'Swachh Bharat', href: '/campus-life/activities', icon: 'Recycle', desc: 'Clean India initiative' },
+            { label: 'Fit India', href: '/campus-life/activities', icon: 'Heart', desc: 'Fitness campaigns' },
+            { label: 'Yoga Day', href: '/campus-life/activities', icon: 'Sun', desc: 'International Yoga Day' },
+            { label: 'Swachh Bharat', href: '/campus-life/activities', icon: 'Recycle', desc: 'Cleanliness drives' },
           ]
         },
         {
           title: 'Media & Events',
           items: [
-            { label: 'Photo Gallery', href: '/campus-life/gallery', icon: 'Image', desc: 'Campus photo gallery' },
-            { label: 'College Events', href: '/campus-life/events', icon: 'CalendarDays', desc: 'Event highlights' },
-            { label: 'Magazine', href: '/campus-life/magazine', icon: 'Newspaper', desc: 'Eminence magazine' },
-            { label: 'Campus Tour', href: '/campus-life/campus-tour', icon: 'MapPin', desc: 'Virtual campus tour' },
+            { label: 'Photo Gallery', href: '/campus-life/gallery', icon: 'Image', desc: 'Moments & event coverage' },
+            { label: 'College Events', href: '/campus-life/events', icon: 'CalendarDays', desc: 'Fests & annual hackathons' },
+            { label: 'Eminence Magazine', href: '/campus-life/magazine', icon: 'Newspaper', desc: 'Annual student publication' },
+            { label: 'Virtual Campus Tour', href: '/campus-life/campus-tour', icon: 'MapPin', desc: 'Explore the permanent campus' },
           ]
         }
       ]

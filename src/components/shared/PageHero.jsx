@@ -22,14 +22,14 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], tag, child
         {/* Breadcrumbs */}
         {breadcrumbs.length > 0 && (
           <nav className="flex items-center gap-1.5 mb-5 flex-wrap">
-            <Link to="/" className="text-dark-400 hover:text-white transition-colors">
+            <Link to="/" className="text-dark-400 hover:text-brand-700 transition-colors">
               <Home size={13} />
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <ChevronRight size={12} className="text-dark-600" />
                 {crumb.href ? (
-                  <Link to={crumb.href} className="text-dark-400 hover:text-white text-xs transition-colors">
+                  <Link to={crumb.href} className="text-dark-400 hover:text-brand-700 text-xs transition-colors">
                     {crumb.label}
                   </Link>
                 ) : (
@@ -56,7 +56,7 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], tag, child
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="font-display font-black text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight"
+          className="font-display font-black text-3xl md:text-4xl lg:text-5xl text-dark-100 mb-4 leading-tight"
         >
           {title}
         </motion.h1>
@@ -67,7 +67,7 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], tag, child
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-dark-300 text-lg max-w-2xl leading-relaxed"
+            className="text-dark-400 text-lg max-w-2xl leading-relaxed"
           >
             {subtitle}
           </motion.p>

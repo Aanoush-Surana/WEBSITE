@@ -61,7 +61,7 @@ function NoticeDashboard() {
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                   activeCategory === cat.id
                     ? 'bg-brand-700 text-white shadow-glow'
-                    : 'bg-dark-800 text-dark-300 hover:text-white border border-white/10'
+                    : 'bg-dark-800 text-dark-300 hover:text-brand-700 border border-dark-700'
                 }`}
               >
                 {cat.label}
@@ -71,7 +71,7 @@ function NoticeDashboard() {
           <button
             onClick={() => setShowPinnedOnly(!showPinnedOnly)}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all border ${
-              showPinnedOnly ? 'bg-yellow-900/30 border-yellow-700/40 text-yellow-400' : 'border-white/10 text-dark-300 hover:text-white bg-dark-800'
+              showPinnedOnly ? 'bg-yellow-50 border-yellow-200 text-yellow-700' : 'border-dark-700 text-dark-300 hover:text-brand-700 bg-dark-800'
             }`}
           >
             <Pin size={13} /> Pinned Only
@@ -81,8 +81,8 @@ function NoticeDashboard() {
         {/* Pinned notices */}
         {pinnedNotices.length > 0 && (
           <div className="mb-8">
-            <h2 className="flex items-center gap-2 font-display font-bold text-white text-lg mb-4">
-              <Pin size={16} className="text-yellow-400" /> Pinned Notices
+            <h2 className="flex items-center gap-2 font-display font-bold text-dark-100 text-lg mb-4">
+              <Pin size={16} className="text-yellow-600" /> Pinned Notices
             </h2>
             <div className="space-y-3">
               {pinnedNotices.map(notice => (
@@ -95,8 +95,8 @@ function NoticeDashboard() {
         {/* Regular notices */}
         {regularNotices.length > 0 && (
           <div>
-            <h2 className="flex items-center gap-2 font-display font-bold text-white text-lg mb-4">
-              <Bell size={16} className="text-brand-400" /> All Notices
+            <h2 className="flex items-center gap-2 font-display font-bold text-dark-100 text-lg mb-4">
+              <Bell size={16} className="text-brand-700" /> All Notices
               <span className="text-dark-500 font-normal text-sm">({regularNotices.length})</span>
             </h2>
             <div className="space-y-3">
@@ -123,16 +123,16 @@ function NoticeCard({ notice }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-card p-4 hover:border-white/20 transition-all cursor-pointer group ${
-        notice.pinned ? 'border-yellow-700/20' : ''
+      className={`glass-card p-4 hover:border-brand-500/20 transition-all cursor-pointer group bg-white ${
+        notice.pinned ? 'border-yellow-500/20' : ''
       }`}
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
         <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
           notice.urgency === 'urgent'
-            ? 'bg-red-900/40 border border-red-700/40 text-red-400'
-            : 'bg-brand-950/50 border border-brand-800/40 text-brand-400'
+            ? 'bg-red-50 border border-red-100 text-red-600'
+            : 'bg-brand-50 border border-brand-100 text-brand-700'
         }`}>
           {notice.urgency === 'urgent' ? <AlertCircle size={16} /> : <Bell size={16} />}
         </div>
@@ -152,7 +152,7 @@ function NoticeCard({ notice }) {
             <span className="badge-info text-[10px]">{notice.subcategory}</span>
           </div>
 
-          <h3 className="text-white/85 text-sm font-medium group-hover:text-white transition-colors leading-snug mb-1.5">
+          <h3 className="text-dark-100 text-sm font-medium group-hover:text-brand-700 transition-colors leading-snug mb-1.5">
             {notice.title}
           </h3>
 
@@ -169,12 +169,12 @@ function NoticeCard({ notice }) {
         <div className="flex items-center gap-2 flex-shrink-0">
           <a
             href={notice.link}
-            className="p-2 rounded-lg text-dark-500 hover:text-white hover:bg-white/5 transition-all"
+            className="p-2 rounded-lg text-dark-500 hover:text-brand-700 hover:bg-brand-50 transition-all"
             onClick={e => e.stopPropagation()}
           >
             <ExternalLink size={14} />
           </a>
-          <div className="text-dark-600 group-hover:text-brand-400 transition-colors">
+          <div className="text-dark-600 group-hover:text-brand-700 transition-colors">
             <ChevronRight size={15} />
           </div>
         </div>

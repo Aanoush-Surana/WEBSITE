@@ -105,15 +105,15 @@ function ProjectTable({ projects }) {
               <th className="text-left p-4 text-dark-300 text-xs font-semibold uppercase tracking-wider">Period</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-dark-700">
             {projects.map((proj, i) => (
-              <tr key={i} className="hover:bg-white/3 transition-colors">
-                <td className="p-4 text-white text-sm font-medium max-w-xs">{proj.title}</td>
+              <tr key={i} className="hover:bg-brand-50/50 transition-colors">
+                <td className="p-4 text-dark-100 text-sm font-medium max-w-xs">{proj.title}</td>
                 <td className="p-4 text-dark-300 text-sm whitespace-nowrap">{proj.pi}</td>
                 <td className="p-4">
                   <span className="badge-info text-xs">{proj.agency}</span>
                 </td>
-                <td className="p-4 text-brand-400 text-sm font-bold whitespace-nowrap">{proj.amount}</td>
+                <td className="p-4 text-brand-700 text-sm font-bold whitespace-nowrap">{proj.amount}</td>
                 <td className="p-4 text-dark-400 text-xs whitespace-nowrap">{proj.year}</td>
               </tr>
             ))}
@@ -134,7 +134,7 @@ function ResearchOverview() {
       />
 
       {/* Stats */}
-      <div className="bg-dark-900/60 border-b border-white/10 py-6">
+      <div className="bg-dark-900/60 border-b border-dark-700 py-6">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { value: '6', label: 'Research Centers', color: 'text-blue-400' },
@@ -153,25 +153,25 @@ function ResearchOverview() {
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-16">
         {/* Research Centers */}
         <div className="mb-12">
-          <h2 className="font-display font-bold text-white text-2xl mb-6 flex items-center gap-3">
-            <FlaskConical size={22} className="text-brand-400" /> Research Centers
+          <h2 className="font-display font-bold text-dark-100 text-2xl mb-6 flex items-center gap-3">
+            <FlaskConical size={22} className="text-brand-700" /> Research Centers
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {researchCenters.map((center) => (
               <Link
                 key={center.id}
                 to={`/research/centers`}
-                className="feature-card group"
+                className="feature-card group bg-white border border-dark-700 hover:border-brand-500/20"
               >
                 <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${center.color} flex items-center justify-center text-white font-bold text-sm mb-4 group-hover:scale-110 transition-transform`}>
                   {center.abbr}
                 </div>
-                <h3 className="font-display font-bold text-white text-base mb-2 leading-tight">{center.name}</h3>
+                <h3 className="font-display font-bold text-dark-100 text-base mb-2 leading-tight group-hover:text-brand-700 transition-colors">{center.name}</h3>
                 <p className="text-dark-400 text-xs mb-3">{center.focus}</p>
                 <div className="flex items-center gap-4 text-xs">
                   <span className="text-dark-300">{center.projects} projects</span>
                   <span className="text-dark-300">{center.scholars} scholars</span>
-                  <span className="text-green-400 font-semibold">{center.funded}</span>
+                  <span className="text-green-600 font-semibold">{center.funded}</span>
                 </div>
               </Link>
             ))}
@@ -181,8 +181,8 @@ function ResearchOverview() {
         {/* Ongoing projects preview */}
         <div>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display font-bold text-white text-2xl flex items-center gap-3">
-              <TrendingUp size={22} className="text-brand-400" /> Ongoing Funded Projects
+            <h2 className="font-display font-bold text-dark-100 text-2xl flex items-center gap-3">
+              <TrendingUp size={22} className="text-brand-700" /> Ongoing Funded Projects
             </h2>
             <Link to="/research/funded-projects/ongoing" className="btn-ghost text-sm">
               View All →
@@ -205,17 +205,17 @@ function CentersPage() {
       />
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-16 space-y-6">
         {researchCenters.map((center) => (
-          <div key={center.id} className="glass-card p-7 hover:border-white/20 transition-all">
+          <div key={center.id} className="glass-card p-7 hover:border-brand-500/20 transition-all">
             <div className="flex items-start gap-5">
               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${center.color} flex items-center justify-center text-white font-bold flex-shrink-0`}>
                 {center.abbr}
               </div>
               <div className="flex-1">
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-display font-bold text-white text-xl">{center.name}</h3>
-                  <span className="text-green-400 font-bold text-sm flex-shrink-0">{center.funded}</span>
+                  <h3 className="font-display font-bold text-dark-100 text-xl">{center.name}</h3>
+                  <span className="text-green-600 font-bold text-sm flex-shrink-0">{center.funded}</span>
                 </div>
-                <p className="text-brand-400 text-sm mt-1 mb-2">Head: {center.head}</p>
+                <p className="text-brand-700 text-sm mt-1 mb-2">Head: {center.head}</p>
                 <p className="text-dark-300 text-sm mb-3">Focus Areas: {center.focus}</p>
                 <div className="flex gap-4 text-xs text-dark-400">
                   <span>{center.projects} funded projects</span>
@@ -293,8 +293,8 @@ export default function Research() {
           <PageHero title="Library" breadcrumbs={[{ label: 'Research', href: '/research' }, { label: 'Library' }]} />
           <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16">
             <div className="glass-card p-8 text-center">
-              <Library size={48} className="text-brand-400 mx-auto mb-4" />
-              <h2 className="font-display font-bold text-white text-2xl mb-3">IIIT Pune Library</h2>
+              <Library size={48} className="text-brand-700 mx-auto mb-4" />
+              <h2 className="font-display font-bold text-dark-100 text-2xl mb-3">IIIT Pune Library</h2>
               <p className="text-dark-400 mb-6">Access the library portal, e-journals, IRINS repository, and IDP.</p>
               <div className="flex flex-wrap justify-center gap-3">
                 <a href="https://sites.google.com/iiitp.ac.in/library" target="_blank" rel="noopener noreferrer" className="btn-primary">Library Website <ExternalLink size={13} /></a>
@@ -309,8 +309,8 @@ export default function Research() {
           <PageHero title="Internship @ IIIT Pune" breadcrumbs={[{ label: 'Research', href: '/research' }, { label: 'Internship' }]} />
           <div className="max-w-4xl mx-auto px-4 lg:px-6 py-16">
             <div className="glass-card p-8">
-              <Briefcase size={32} className="text-brand-400 mb-4" />
-              <h2 className="font-display font-bold text-white text-2xl mb-4">Research Internship Program</h2>
+              <Briefcase size={32} className="text-brand-700 mb-4" />
+              <h2 className="font-display font-bold text-dark-100 text-2xl mb-4">Research Internship Program</h2>
               <p className="text-dark-300 leading-relaxed mb-6">
                 IIIT Pune offers summer and winter research internship opportunities for exceptional undergraduate students
                 from other colleges. Interns work with faculty on funded research projects.
@@ -318,7 +318,7 @@ export default function Research() {
               <div className="grid sm:grid-cols-2 gap-4">
                 {['Summer Internship (May-July)', 'Winter Internship (Dec-Jan)'].map(t => (
                   <div key={t} className="bg-dark-800/50 rounded-xl p-4">
-                    <h4 className="text-white font-semibold mb-2">{t}</h4>
+                    <h4 className="text-dark-100 font-semibold mb-2">{t}</h4>
                     <p className="text-dark-400 text-sm">Applications open. Check official website for deadlines.</p>
                   </div>
                 ))}
